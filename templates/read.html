@@ -8,8 +8,8 @@
     <div>
         <hr class="solid">
         <p class="post">
-            This airbnb is hosted by {{doc.host_name}}, last revirewed at {{ doc.last_review}}. 
-            Take a look at the host's description of this place: {{doc.name}}.
+            This airbnb is hosted by {{doc.host_name}}. 
+            Take a look at the host's description of this place: {{doc.description}}.
             Of course, the price is only {{doc.price}}!
             </br>
             <a href="{{ url_for('edit',mongoid=doc._id)}}">Edit</a> | <a href="{{ url_for('delete',mongoid=doc._id)}}">Delete</a>

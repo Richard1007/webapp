@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block container %}
-<h2>Hi! A wonderful trip always starts with a good residence!</h2>
-<p>Welcome to the homepage of my airbnb checking app. It contains all airbnbs
+<h2>A wonderful trip always starts with a good residence!</h2>
+<p>Welcome to the homepage of my airbnb checking app. It contains part of airbnbs
     in Clark County, NV. 
-    Here you may check all available airbnbs categorized by their prices, host name, and a description. 
+    Here you may check some available airbnbs categorized by their prices, host name, and a description. 
     If you are a house owner, feel free to add your house to earn some money. 
 
     <ul>
-        <li><a href="{{ url_for('read')}}">Check all housing information </a></li>
-        <li><a href="{{ url_for('create')}}">Create a new record if you want to become a host</a></li>
+        <li><a href="{{ url_for('read')}}">Check housing information </a></li>
+        <li><a href="{{ url_for('create')}}"> Want to become a host? Create a new one!</a></li>
     </ul>
 </p>
 {% endblock %}

@@ -44,7 +44,7 @@ def read():
     Route for GET requests to the read page.
     Displays some information for the user with links to other pages.
     """
-    docs = db.housings.find({}).sort("host_name", -1) # sort in descending order of host name
+    docs = db.house.find({}).sort("host_name", -1) # sort in descending order of host name
     return render_template('read.html', docs=docs) # render the read template
 
 
@@ -65,17 +65,13 @@ def create_post():
     """
     
     host_name = request.form['fhost_name']
-    last_review = request.form['flast_review']
-    name = request.form['fname']
+    description = request.form['fdescription']
     price = request.form['fprice']
-
-
 
     # create a new document with the data the user entered
     doc = {
         'host_name': host_name,
-        'last_review' : last_review,
-        'name' : name,
+        'description': description,
         'price' : price
     }
     db.housings.insert_one(doc) # insert a new document
@@ -89,7 +85,7 @@ def edit(mongoid):
     Route for GET requests to the edit page.
     Displays a form users can fill out to edit an existing record.
     """
-    doc = db.housings.find_one({"_id": ObjectId(mongoid)})
+    doc = db.house.find_one({"_id": ObjectId(mongoid)})
     return render_template('edit.html', mongoid=mongoid, doc=doc) # render the edit template
 
 
@@ -100,15 +96,13 @@ def edit_post(mongoid):
     Accepts the form submission data for the specified document and updates the document in the database.
     """
     host_name = request.form['fhost_name']
-    last_review = request.form['flast_review']
-    name = request.form['fname']
+    description = request.form['fdescription']
     price = request.form['fprice']
 
 
     doc = {
         'host_name': host_name,
-        'last_review' : last_review,
-        'name' : name,
+        'description' : description,
         'price' : price
     }
 
