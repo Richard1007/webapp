@@ -4,19 +4,19 @@
 <form method="POST" action="{{ url_for('create_post') }}">
   <p>
     Host name:
-    <input type="text" id="fhost_name" name="fhost_name" value="{{doc.host_name}}" /><br />
+    <textarea type="text" id="fhost_name" name="fhost_name"></textarea><br />
   </p>
   <p>
     Last review at:
-    <input type="text" id="flast_review" name="flast_review" value="{{doc.last_review}}" /><br />
+    <textarea type="text" id="flast_review" name="flast_review"></textarea><br />
   </p>
   <p>
     Description:
-    <input type="text" id="fname" name="fname" value="{{doc.name}}" /><br />
+    <textarea type="text" id="fname" name="fname"></textarea><br />
   </p>
   <p>
     Price for it:
-    <input type="text" id="fprice" name="fprice" value="{{doc.price}}" /><br />
+    <textarea type="text" id="fprice" name="fprice"></textarea><br />
   </p>
 
   <p>
