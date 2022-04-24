@@ -44,7 +44,7 @@ def read():
     Route for GET requests to the read page.
     Displays some information for the user with links to other pages.
     """
-    docs = db.housings.find({}).sort("id", -1) # sort in descending order of created_at timestamp
+    docs = db.housings.find({}).sort("host_name", -1) # sort in descending order of host name
     return render_template('read.html', docs=docs) # render the read template
 
 
@@ -63,17 +63,22 @@ def create_post():
     Route for POST requests to the create page.
     Accepts the form submission data for a new document and saves the document to the database.
     """
+    
+    host_name = request.form['fhost_name']
+    last_review = request.form['flast_review']
     name = request.form['fname']
-    message = request.form['fmessage']
+    price = request.form['fprice']
+
 
 
     # create a new document with the data the user entered
     doc = {
-        "name": name,
-        "message": message, 
-        "created_at": datetime.datetime.utcnow()
+        'host_name': host_name,
+        'last_review' : last_review,
+        'name' : name,
+        'price' : price
     }
-    db.exampleapp.insert_one(doc) # insert a new document
+    db.housings.insert_one(doc) # insert a new document
 
     return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
@@ -84,7 +89,7 @@ def edit(mongoid):
     Route for GET requests to the edit page.
     Displays a form users can fill out to edit an existing record.
     """
-    doc = db.exampleapp.find_one({"_id": ObjectId(mongoid)})
+    doc = db.housings.find_one({"_id": ObjectId(mongoid)})
     return render_template('edit.html', mongoid=mongoid, doc=doc) # render the edit template
 
 
@@ -94,14 +99,17 @@ def edit_post(mongoid):
     Route for POST requests to the edit page.
     Accepts the form submission data for the specified document and updates the document in the database.
     """
+    host_name = request.form['fhost_name']
+    last_review = request.form['flast_review']
     name = request.form['fname']
-    message = request.form['fmessage']
+    price = request.form['fprice']
+
 
     doc = {
-        # "_id": ObjectId(mongoid), 
-        "name": name, 
-        "message": message, 
-        "created_at": datetime.datetime.utcnow()
+        'host_name': host_name,
+        'last_review' : last_review,
+        'name' : name,
+        'price' : price
     }
 
     db.exampleapp.update_one(
