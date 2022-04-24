@@ -54,6 +54,7 @@ def create():
     Route for GET requests to the create page.
     Displays a form users can fill out to create a new document.
     """
+    
     return render_template('create.html') # render the create template
 
 
@@ -74,7 +75,7 @@ def create_post():
         'description': description,
         'price' : price
     }
-    db.housings.insert_one(doc) # insert a new document
+    db.house.insert_one(doc) # insert a new document
 
     return redirect(url_for('read')) # tell the browser to make a request for the /read route
 
@@ -106,7 +107,7 @@ def edit_post(mongoid):
         'price' : price
     }
 
-    db.exampleapp.update_one(
+    db.house.update_one(
         {"_id": ObjectId(mongoid)}, # match criteria
         { "$set": doc }
     )
@@ -120,7 +121,7 @@ def delete(mongoid):
     Route for GET requests to the delete page.
     Deletes the specified record from the database, and then redirects the browser to the read page.
     """
-    db.exampleapp.delete_one({"_id": ObjectId(mongoid)})
+    db.house.delete_one({"_id": ObjectId(mongoid)})
     return redirect(url_for('read')) # tell the web browser to make a request for the /read route.
 
 @app.route('/webhook', methods=['POST'])
